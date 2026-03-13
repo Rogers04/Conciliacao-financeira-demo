@@ -41,8 +41,10 @@ def limpar_valor(valor):
 
 
 # -------------------------------------- 3. CARREGAMENTO ESTRUTURADO -------------------------------------- #
- 
+
 @st.cache_data(ttl=600) # Cache para não esgotar a cota do Google
+# LEMBRE-SE!! SE VOCÊ QUISER QUE A PÁGINA RECARREGUE RÁPIDO DEIXE O TTL=0
+
 def carregar_contas():
     try:
         client = conectar_gsheets()
@@ -69,7 +71,7 @@ def carregar_contas():
         st.error(f"Erro ao ler CONTAS_A_PAGAR: {e}")
         return pd.DataFrame()
 
-@st.cache_data(ttl=600)
+@st.cache_data(ttl=600) # LEMBRE-SE!! SE VOCÊ QUISER QUE A PÁGINA RECARREGUE RÁPIDO DEIXE O TTL=0
 def carregar_extrato():
 #   Função adicionada para fechar tríade do projeto
     try:
